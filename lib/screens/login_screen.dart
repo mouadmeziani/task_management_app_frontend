@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:task_management_app/screens/registration_screen.dart';
 import 'package:task_management_app/services/strapi_service.dart';
@@ -29,7 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     try {
-      String? jwt = await _strapiService.loginUser(email, password);
+      dynamic data = await _strapiService.loginUser(email, password);
+      String? jwt = data?['jwt'];
       if (jwt != null) {
         setState(() {
           message = 'Login successful! Token: $jwt';
